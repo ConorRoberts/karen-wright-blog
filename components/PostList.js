@@ -15,7 +15,13 @@ const PostList = () => {
       data: { data },
     } = await axios.get("/api/posts");
     setPosts(data.reverse());
-    setCategories(data.map((e) => e.category));
+    setCategories(
+      data
+        // object => category
+        .map(({ category }) => category)
+        // Ensures no duplicates
+        .filter((e, index, arr) => arr.indexOf(e) === index)
+    );
   }, []);
 
   const renderPosts = () => {
@@ -36,7 +42,7 @@ const PostList = () => {
       );
     }
     return posts
-      .filter((e) => e.category === selectedCategory)
+      .filter(({ category }) => category === selectedCategory)
       .map(({ _id, title, author, category, date, imageURL, text }) => (
         <PostPreview
           key={_id}
@@ -58,8 +64,8 @@ const PostList = () => {
         <Select
           onChange={(e) => setSelectedCategory(e.target.value)}
           size="md"
-          fontSize="2rem"
-          h="50px"
+          fontSize="1.6rem"
+          h="40px"
         >
           <option value="None" key="None">
             None

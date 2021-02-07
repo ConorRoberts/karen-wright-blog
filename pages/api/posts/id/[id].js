@@ -15,8 +15,10 @@ export default async function (req, res) {
 
       if (foundPost) {
         res.status(200).send({ data: foundPost });
+        return;
       } else {
         res.status(400).send({ data: "Could not find a post with this ID" });
+        return;
       }
 
     case "DELETE":

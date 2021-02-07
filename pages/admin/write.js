@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Header from "../../components/Header";
 import styles from "../../styles/Write.module.scss";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import axios from "axios";
 import PostPreview from "../../components/PostPreview";
 import { useRouter } from "next/router";
+
+import { Button, Textarea, FormLabel, Input } from "@chakra-ui/react";
 
 const Write = () => {
   const router = useRouter();
@@ -52,7 +52,62 @@ const Write = () => {
           className={styles.formContainer}
           onSubmit={(e) => submitPost(e, formState)}
         >
-          <div className={styles.inputContainer}>
+          <FormLabel className={styles.formLabel}>Title</FormLabel>
+          <Input
+            size="lg"
+            onChange={handleChange}
+            id="title"
+            required
+            value={formState.title}
+            className={styles.inputField}
+            fontSize="2rem"
+            h="4rem"
+          />
+          <FormLabel className={styles.formLabel}>Body</FormLabel>
+          <Textarea
+            size="lg"
+            id="text"
+            onChange={handleChange}
+            required
+            value={formState.text}
+            className={styles.inputField}
+            fontSize="2rem"
+            h="4rem"
+          />
+          <FormLabel className={styles.formLabel}>Category</FormLabel>
+          <Input
+            size="lg"
+            onChange={handleChange}
+            id="category"
+            required
+            value={formState.category}
+            fontSize="2rem"
+            h="4rem"
+            multiline
+            className={styles.inputField}
+          />
+          <FormLabel className={styles.formLabel}>Image URL</FormLabel>
+          <Input
+            size="lg"
+            id="imageURL"
+            className={styles.inputField}
+            required
+            onChange={handleChange}
+            value={formState.imageURL}
+            fontSize="1.5rem"
+            h="4rem"
+          />
+          <Button
+            fontSize="2rem"
+            padding="2rem 6rem" 
+            type="submit"
+            size="lg"
+            className={styles.btnSubmit}
+          >
+            Submit
+          </Button>
+        </form>
+        {/* <div className={styles.inputContainer}>
             <TextField
               inputProps={{ style: { fontSize: "2rem" } }}
               InputLabelProps={{ style: { fontSize: "2rem" } }}
@@ -64,8 +119,8 @@ const Write = () => {
               onChange={handleChange}
               value={formState.title}
             />
-          </div>
-          <div className={styles.inputContainer}>
+          </div> */}
+        {/* <div className={styles.inputContainer}>
             <TextField
               inputProps={{ style: { fontSize: "1.5rem", lineHeight: "2rem" } }}
               InputLabelProps={{ style: { fontSize: "2rem" } }}
@@ -106,20 +161,7 @@ const Write = () => {
               value={formState.imageURL}
               onChange={handleChange}
             />
-          </div>
-          <Button
-            style={{
-              width: "30%",
-              backgroundColor: "#777",
-              fontSize: "1.5rem",
-            }}
-            // style={styles.btnSubmit}
-            type="submit"
-            // className={styles.btnSubmit}
-          >
-            Submit
-          </Button>
-        </form>
+          </div> */}
       </div>
     </div>
   );
