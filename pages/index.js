@@ -6,7 +6,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="container">
+    <div>
       <Head>
         <title>Karen Wright's Blog</title>
         {/* <link rel="icon" href="/favicon.ico" /> */}

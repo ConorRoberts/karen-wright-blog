@@ -1,6 +1,5 @@
 import styles from "../styles/PostPreview.module.scss";
 import Link from "next/link";
-import axios from "axios";
 
 const PostPreview = ({
   postID,
