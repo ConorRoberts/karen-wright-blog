@@ -1,0 +1,49 @@
+.formContainer{
+    display:flex;
+    flex-direction:column;
+    // padding:0 5rem;
+    // justify-content:center;
+    align-items:center;
+    font-size:2rem;
+    margin-top:7vh;
+}
+
+.mainContainer{
+    display:flex;
+    justify-content:center;
+    .formContainer,.postPreview{
+        width:50%;
+    }
+    padding:5vh 5vw;
+
+}
+
+.postPreview{
+    display:flex;
+}
+
+.btnSubmit{
+    font-size:2rem;
+    background:red;
+}
+
+.labelConfig{
+    font-size:2rem;
+}
+
+.postBody{
+    margin-top:1rem;
+}
+.inputContainer{
+    width:100%;
+    margin-bottom:3rem;
+}
+.inputField{
+    width:100%;
+    margin-bottom:5rem;
+}
+
+.btnSubmit{
+    width:50%;
+    background-color:red;
+}

@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## TO DO
+
+Finish UI
+    Finish home page with preview posts
+    Finish individual post page
+        Accessable at /post/`[id]`
+
 ## Getting Started
 
 First, run the development server:

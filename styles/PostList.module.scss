@@ -1,0 +1,12 @@
+.postListContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 50vw;
+}
+
+@media (max-width: 1000px) {
+  .postListContainer {
+    width: 80vw;
+  }
+}

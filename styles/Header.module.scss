@@ -1,0 +1,38 @@
+.header{
+    $bg:#E3E5E5;
+    display:sticky;
+    background-color:$bg;
+    box-shadow: -10px -10px 22px black;
+    position:fixed;
+    width:100%;
+    z-index:9999;
+    top:0;
+    .headerMain{
+        font-size:3rem;
+        text-align:center;
+    }
+    .nav{
+        display:flex;
+        justify-content:space-evenly;
+        list-style-type:none;
+        .navButton{
+            background-color:$bg;
+            padding:1rem;
+            border:none;
+            font-weight:400;
+            font-size:1.6rem;
+            color:black;
+            transition: background-color 300ms;
+            text-decoration:none;
+            display:inline-block;
+            &:hover{
+                background-color:rgba(255, 255, 255, 0.342);
+            }
+        }
+    }
+}
+
+.pageTitle{
+    text-align:center;
+    font-weight:400;
+}
