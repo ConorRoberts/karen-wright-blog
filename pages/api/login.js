@@ -1,8 +1,8 @@
 import dbConnect from "../../utils/dbConnect";
 import User from "../../models/User";
-import { withIronSession } from "next-iron-session";
+import withSession from "../../lib/withSession";
 
-export default withIronSession(
+export default withSession(
   async (req, res) => {
     await dbConnect();
 
@@ -25,12 +25,5 @@ export default withIronSession(
         const user = await req.session.get("user");
         return res.status(200).send({user});
     }
-  },
-  {
-    cookieName: "KW_BLOG_COOKIE",
-    cookieOptions: {
-      secure: process.env.NODE_ENV === "production" ? true : false,
-    },
-    password: process.env.COOKIE_SECRET,
   }
 );
