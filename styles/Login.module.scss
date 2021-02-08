@@ -11,8 +11,9 @@
         flex-direction:column;
         border:1px solid grey;
         border-radius:15px;
-        padding: 7rem 5rem;
+        padding: 9rem 5rem;
         width:30%;
+        width:95%;
         background:rgba(220, 201, 255, 0.726);
     }
     .title{
@@ -31,5 +32,13 @@
         font-size:1.6rem;
         margin-top:2rem;
         border-radius:15px;
+    }
+}
+
+@media(max-width:1000px){
+    .formContainer{
+        .form{
+            width:95%;
+        }
     }
 }

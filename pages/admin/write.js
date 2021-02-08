@@ -84,7 +84,7 @@ const Write = ({ user }) => {
             value={formState.category}
             fontSize="2rem"
             h="4rem"
-            multiline
+            multiline="true"
             className={styles.inputField}
           />
           <FormLabel className={styles.formLabel}>Image URL</FormLabel>

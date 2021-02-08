@@ -11,6 +11,8 @@
 .mainContainer{
     display:flex;
     justify-content:center;
+    align-items:center;
+    flex-direction:row;
     .formContainer,.postPreview{
         width:50%;
     }
@@ -27,7 +29,6 @@
 
 .btnSubmit{
     font-size:2rem;
-    background:red;
 }
 
 .postBody{
@@ -46,4 +47,13 @@
 .btnSubmit{
     width:50%;
     background:#777;
+}
+
+@media(max-width:1000px){
+    .mainContainer{
+        flex-direction:column;
+        .formContainer,.postPreview{
+            width:100%;
+        }
+    }
 }
