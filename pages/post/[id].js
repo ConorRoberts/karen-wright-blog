@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
 import PostPreview from "../../components/PostPreview";
 import styles from "../../styles/PostID.module.scss";
 import Header from "../../components/Header";
 
-const PostID = () => {
-  const router = useRouter();
+const PostID = ({ id }) => {
   const [post, setPost] = useState({});
 
   useEffect(async () => {
-    if (router) {
-      const {
-        data: { data },
-      } = await axios.get(`/api/posts/id/${router.query.id}`);
-      setPost(data);
-    }
-  }, [router]);
+    const {
+      data: { data },
+    } = await axios.get(`/api/posts/id/${id}`);
+    setPost(data);
+  }, []);
 
   return (
     <div className="container">
@@ -31,12 +27,22 @@ const PostID = () => {
               imageURL={post.imageURL}
               text={post.text}
               date={post.date}
+              noLink
             />
           )}
         </div>
       </main>
     </div>
   );
+};
+
+export const getServerSideProps = async (context) => {
+  const {
+    query: { id },
+  } = context;
+  return {
+    props: { id }, 
+  };
 };
 
 export default PostID;

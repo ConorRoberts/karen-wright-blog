@@ -2,10 +2,9 @@ import React from "react";
 import styles from "../styles/Header.module.scss";
 import Link from "next/link";
 
-const Header = ({title="Karen Wright"}) => {
+const Header = ({ user }) => {
   return (
     <header className={styles.header}>
-      {/* <div className={styles.headerMain}>{title}</div> */}
       <nav>
         <ul className={styles.nav}>
           <li>
@@ -13,10 +12,19 @@ const Header = ({title="Karen Wright"}) => {
               <a className={styles.navButton}>HOME</a>
             </Link>
           </li>
+          {user ? <Link href={"/admin/write"}>
+              <a className={styles.navButton}>NEW POST</a>
+            </Link> : null}
           <li>
-            <Link href={"/login"}>
-              <a className={styles.navButton}>LOGIN</a>
+            {user ? (
+              <Link href={"/api/logout"}>
+              <a className={styles.navButton}>LOGOUT</a>
             </Link>
+            ) : (
+              <Link href={"/login"}>
+                <a className={styles.navButton}>LOGIN</a>
+              </Link>
+            )}
           </li>
         </ul>
       </nav>

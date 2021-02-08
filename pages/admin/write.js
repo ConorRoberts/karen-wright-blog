@@ -5,10 +5,11 @@ import styles from "../../styles/Write.module.scss";
 import axios from "axios";
 import PostPreview from "../../components/PostPreview";
 import { useRouter } from "next/router";
+import withSession from "../../lib/withSession";
 
 import { Button, Textarea, FormLabel, Input } from "@chakra-ui/react";
 
-const Write = () => {
+const Write = ({ user }) => {
   const router = useRouter();
   const [formState, setFormState] = useState({
     title: "",
@@ -34,7 +35,7 @@ const Write = () => {
         <title>New Blog Post</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header title="New Blog Post" />
+      <Header user={user} />
       <div className={styles.mainContainer}>
         <div className={styles.postPreview}>
           <PostPreview
@@ -99,7 +100,7 @@ const Write = () => {
           />
           <Button
             fontSize="2rem"
-            padding="2rem 6rem" 
+            padding="2rem 6rem"
             type="submit"
             size="lg"
             className={styles.btnSubmit}
@@ -107,64 +108,18 @@ const Write = () => {
             Submit
           </Button>
         </form>
-        {/* <div className={styles.inputContainer}>
-            <TextField
-              inputProps={{ style: { fontSize: "2rem" } }}
-              InputLabelProps={{ style: { fontSize: "2rem" } }}
-              className={styles.inputField}
-              required
-              label="Title"
-              id="title"
-              variant="outlined"
-              onChange={handleChange}
-              value={formState.title}
-            />
-          </div> */}
-        {/* <div className={styles.inputContainer}>
-            <TextField
-              inputProps={{ style: { fontSize: "1.5rem", lineHeight: "2rem" } }}
-              InputLabelProps={{ style: { fontSize: "2rem" } }}
-              className={styles.inputField}
-              required
-              label="Body"
-              multiline
-              id="text"
-              variant="outlined"
-              onChange={handleChange}
-              value={formState.text}
-            />
-          </div>
-          <div className={styles.inputContainer}>
-            <TextField
-              inputProps={{ style: { fontSize: "1.5rem", lineHeight: "2rem" } }}
-              InputLabelProps={{ style: { fontSize: "2rem" } }}
-              className={styles.inputField}
-              required
-              label="Category"
-              multiline
-              id="category"
-              variant="outlined"
-              value={formState.category}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={styles.inputContainer}>
-            <TextField
-              inputProps={{ style: { fontSize: "1.5rem", lineHeight: "2rem" } }}
-              InputLabelProps={{ style: { fontSize: "2rem" } }}
-              className={styles.inputField}
-              required
-              label="Image URL"
-              multiline
-              id="imageURL"
-              variant="outlined"
-              value={formState.imageURL}
-              onChange={handleChange}
-            />
-          </div> */}
       </div>
     </div>
   );
 };
+
+export const getServerSideProps = withSession(async ({ req, res }) => {
+  const user = await req.session.get("user");
+  if (user) {
+    return { props: { user: user.username } };
+  }
+  res.end();
+  return { props: {} };
+});
 
 export default Write;

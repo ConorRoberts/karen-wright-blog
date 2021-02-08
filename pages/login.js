@@ -9,7 +9,7 @@ import { Input, FormLabel, Button } from "@chakra-ui/react";
 
 const Login = () => {
   const router = useRouter();
-  const [validLogin, setValidLogin] = useState(false);
+  const [isBadLogin, setIsBadLogin] = useState(false);
   const [formState, setFormState] = useState({
     username: "",
     password: "",
@@ -21,20 +21,15 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get("/api/login", {
-        params: { username: formState.username, password: formState.password },
+      await axios.post("/api/login", {
+        username: formState.username,
+        password: formState.password,
       });
-      console.log(response.data.data);
+      await axios.get("/api/login/");
+      router.push("/");
     } catch (error) {
-      console.log(error);
+      setIsBadLogin(true);
     }
-
-    // setValidLogin(true);
-    //   query: { username: formState.username, password: formState.password },
-    // console.log(data);
-    // Store login as cookie
-    // stuff with redux?
-    // router.push("/");
   };
   return (
     <>
@@ -43,14 +38,13 @@ const Login = () => {
       </Head>
       <Header />
       <div className={styles.formContainer}>
-        {validLogin && <p>LOGGED IN WOO</p>}
         <form onSubmit={(e) => submitLogin(e)} className={styles.form}>
           <h1 className={styles.title}>Login</h1>
           <FormLabel fontSize="1.6rem">Username</FormLabel>
           <Input
             size="lg"
             h="5rem"
-            marginBottom="2rem"s
+            marginBottom="2rem"
             fontSize="2.3rem"
             id="username"
             onChange={handleChange}
@@ -69,12 +63,13 @@ const Login = () => {
           />
           <Button
             padding="2rem 4rem"
-            background="grey"
+            background="#777"
             fontSize="2rem"
             type="submit"
           >
             Login
           </Button>
+          {isBadLogin ? <p className={styles.badLogin}>Invalid Login</p> : null}
         </form>
       </div>
     </>
