@@ -1,0 +1,52 @@
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-family: "Source Serif Pro";
+  border-radius: 10px;
+  // border:1px solid grey;
+  padding: 2rem;
+
+  .title {
+    font-size: 2.5rem;
+    font-family: "Montserrat";
+    color: grey;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .moreLink {
+    color: dodgerblue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  p {
+    text-align: justify;
+  }
+}
+
+.socialsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  margin-bottom: 1.5rem;
+  li {
+    margin: 0 0.8rem;
+    padding: 1rem;
+    color: rgb(111, 99, 133);
+    font-size: 2.6rem;
+    border-radius: 15px;
+    transition:color 300ms;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:first-child {
+      margin-left: 0;
+    }
+    &:hover{
+        color:rgb(233, 210, 252);
+    }
+  }
+}

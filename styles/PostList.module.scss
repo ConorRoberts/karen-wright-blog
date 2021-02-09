@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 50vw;
 }
 
 .selectCategory{
@@ -14,11 +13,5 @@
   label{
     font-size:2rem;
     margin-bottom:.5rem;
-  }
-}
-
-@media (max-width: 1000px) {
-  .postListContainer {
-    width: 80vw;
   }
 }

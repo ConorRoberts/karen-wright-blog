@@ -4,6 +4,7 @@ import PostList from "../components/PostList";
 import styles from "../styles/Home.module.scss";
 import React from "react";
 import withSession from "../lib/withSession";
+import About from "../components/About";
 
 const Home = ({ user }) => {
   return (
@@ -16,6 +17,9 @@ const Home = ({ user }) => {
       <main className={styles.mainContainer}>
         <div className={styles.blogPostContainer}>
           <PostList />
+        </div>
+        <div className={styles.aboutContainer}>
+          <About />
         </div>
       </main>
     </div>
