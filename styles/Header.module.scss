@@ -13,14 +13,16 @@
     }
     .nav{
         display:flex;
-        justify-content:flex-end;
+        justify-content:space-between;
         list-style-type:none;
+        font-size:1.6rem;
+        // letter-spacing:0.1rem;
+        font-weight:500;
         .navButton{
             background-color:$bg;
             padding:1rem 2rem;
             border:none;
-            font-weight:400;
-            font-size:1.7rem;
+            // font-weight:400;
             color:black;
             transition: background-color 300ms;
             text-decoration:none;
@@ -28,6 +30,13 @@
             &:hover{
                 background-color:rgba(255, 255, 255, 0.801);
             }
+            &:first-child{
+                margin-right:auto;
+            }
+        }
+        .rightSide ul{
+            display:flex;
+            list-style-type:none;
         }
     }
 }
