@@ -5,23 +5,20 @@ import axios from "axios";
 
 import { Select } from "@chakra-ui/react";
 
-const PostList = () => {
-  const [posts, setPosts] = useState([]);
+const PostList = ({posts}) => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("None");
 
-  useEffect(async () => {
-    const {
-      data: { data },
-    } = await axios.get("/api/posts");
-    setPosts(data.reverse());
-    setCategories(
-      data
-        // object => category
-        .map(({ category }) => category)
-        // Ensures no duplicates
-        .filter((e, index, arr) => arr.indexOf(e) === index)
-    );
+  useEffect(() => {
+    if (posts){
+      setCategories(
+        posts
+          // object => category
+          .map(({ category }) => category)
+          // Ensures no duplicates
+          .filter((e, index, arr) => arr.indexOf(e) === index)
+      );
+    }
   }, []);
 
   const renderPosts = () => {
@@ -84,9 +81,3 @@ const PostList = () => {
 };
 
 export default PostList;
-
-// {/* <button
-//               onClick={async () => await axios.delete(`/api/posts/id/${_id}`)}
-//             >
-//               Delete Post
-//             </button> */}

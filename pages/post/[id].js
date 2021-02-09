@@ -3,6 +3,8 @@ import axios from "axios";
 import PostPreview from "../../components/PostPreview";
 import styles from "../../styles/PostID.module.scss";
 import Header from "../../components/Header";
+// import dbConnect from "../../utils/dbConnect";
+// import Post from "../../models/Post";
 
 const PostID = ({ id }) => {
   const [post, setPost] = useState({});
@@ -38,10 +40,11 @@ const PostID = ({ id }) => {
 
 export const getServerSideProps = async (context) => {
   const {
-    query: { id },
+    params: { id },
   } = context;
+
   return {
-    props: { id }, 
+    props: { id },
   };
 };
 

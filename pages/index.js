@@ -5,8 +5,10 @@ import styles from "../styles/Home.module.scss";
 import React from "react";
 import withSession from "../lib/withSession";
 import About from "../components/About";
+import dbConnect from "../utils/dbConnect";
+import Post from "../models/Post";
 
-const Home = ({ user }) => {
+const Home = ({ user,posts }) => {
   return (
     <div>
       <Head>
@@ -16,7 +18,7 @@ const Home = ({ user }) => {
       <Header user={user} />
       <main className={styles.mainContainer}>
         <div className={styles.blogPostContainer}>
-          <PostList />
+          <PostList posts={posts}/>
         </div>
         <div className={styles.aboutContainer}>
           <About />
@@ -27,8 +29,14 @@ const Home = ({ user }) => {
 };
 
 export const getServerSideProps = withSession(async ({ req, res }) => {
+  await dbConnect();
+  const posts = await Post.find({});
+  const postsJSON = JSON.parse(JSON.stringify(posts.reverse()))
+
   const user = await req.session.get("user");
-  return user ? { props: { user: user.username } } : { props: { user: null } };
+  const username = user ? user.username : null;
+
+  return { props: {posts:postsJSON, user: username } };
 });
 
 export default Home;

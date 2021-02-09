@@ -9,7 +9,7 @@ export default async function (req, res) {
   switch (method) {
     case "GET":
       const posts = await Post.find({});
-      res.send({ data: posts });
+      res.status(200).send({ posts });
       return;
     case "POST":
       const { title, author, text, category, imageURL } = req.body;
