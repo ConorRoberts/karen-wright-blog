@@ -9,7 +9,7 @@ const PostPreview = ({
   author,
   category,
   date,
-  noLink
+  noLink,
 }) => {
   const monthNames = [
     "January",
@@ -28,23 +28,26 @@ const PostPreview = ({
 
   return (
     <div className={styles.container}>
-      {noLink ? <img src={imageURL} alt="Blog post image" /> : <Link href={`/post/${postID}`} passHref>
-        <div className={styles.imageContainer}>
-          <a>
-            <img src={imageURL} alt="Blog post image" />
-          </a>
-        </div>
-      </Link>}
+      {noLink ? (
+        <img src={imageURL} alt="Blog post image" />
+      ) : (
+        <Link href={`/post/${postID}`} className={styles.imageContainer}>
+          <img
+            style={{ cursor: "pointer" }}
+            className={styles.postImage}
+            src={imageURL}
+            alt="Blog post image"
+          />
+        </Link>
+      )}
 
       <p className={styles.category}>{category}</p>
       <h4 className={styles.title}>{title}</h4>
-      <p className={styles.text}>
-        {/* {text.split("").slice(0, charLimit).join("") + ". . ."} */}
-        {/* {text.substring(0, 200) + "..."} */}
-        {text}
-      </p>
+      <p className={styles.text}>{text}</p>
       <p className={styles.date}>
-        {`${author} on ${monthNames[new Date(date).getMonth()]} ${new Date(date).getDay()}, 
+        {`${author} on ${monthNames[new Date(date).getMonth()]} ${new Date(
+          date
+        ).getDay()}, 
         ${new Date(date).getFullYear()}`}
       </p>
     </div>

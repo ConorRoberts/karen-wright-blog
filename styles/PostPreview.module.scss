@@ -6,20 +6,11 @@
   font-size: 1.5rem;
   overflow: hidden;
   width:100%;
-  // height:100%;
   .imageContainer{
     overflow:hidden;
-    // max-height:40vh;
     padding:0;
-    a{
-      pointer-events: auto;
-      display:block;
-      overflow:hidden;
-    }
-    img {
-      // max-width: 100%;
+    .postImage {
       width:100%;
-      overflow:hidden;
     }
   }
   .category{

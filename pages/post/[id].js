@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import PostPreview from "../../components/PostPreview";
 import styles from "../../styles/PostID.module.scss";
 import Header from "../../components/Header";
-// import dbConnect from "../../utils/dbConnect";
-// import Post from "../../models/Post";
+import dbConnect from "../../utils/dbConnect";
+import Post from "../../models/Post";
 
-const PostID = ({ id }) => {
-  const [post, setPost] = useState({});
-
-  useEffect(async () => {
-    const {
-      data: { data },
-    } = await axios.get(`/api/posts/id/${id}`);
-    setPost(data);
-  }, []);
-
+const PostID = ({ post }) => {
   return (
     <div className="container">
       <Header />
@@ -43,8 +33,13 @@ export const getServerSideProps = async (context) => {
     params: { id },
   } = context;
 
+  await dbConnect();
+
+  const post = await Post.findById(id);
+  const postJSON = post ? JSON.parse(JSON.stringify(post)) : null;
+
   return {
-    props: { id },
+    props: { id, post: postJSON },
   };
 };
 
