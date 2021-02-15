@@ -36,6 +36,8 @@ export const getServerSideProps = withSession(async ({ req, res }) => {
   const user = await req.session.get("user");
   const username = user ? user.username : null;
 
+  console.log(postsJSON);
+
   return { props: {posts:postsJSON, user: username } };
 });
 

@@ -47,7 +47,7 @@ const PostPreview = ({
       <p className={styles.date}>
         {`${author} on ${monthNames[new Date(date).getMonth()]} ${new Date(
           date
-        ).getDay()}, 
+        ).getDate()}, 
         ${new Date(date).getFullYear()}`}
       </p>
     </div>
