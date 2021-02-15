@@ -11,17 +11,17 @@ import {
 const About = () => {
   const fullText =
     "Welcome! I’m Karen. While I’ve got websites and social media stuff elsewhere, I recently decided to take on a bit of a project that I suspect will be worth documenting. So here we are. I’m not quite sure what this will be but whatever it is, I don’t think it will be boring. Wish me luck!";
-  const smallText = fullText.split(" ").slice(0, 50).join(" ");
-  const [open, setOpen] = useState(false);
-  const [text, setText] = useState(smallText);
+  // const smallText = fullText.split(" ").slice(0, 50).join(" ");
+  // const [open, setOpen] = useState(false);
+  // const [text, setText] = useState(smallText);
 
-  useEffect(() => {
-    if (open) {
-      setText(fullText);
-    } else {
-      setText(smallText);
-    }
-  }, [open]);
+  // useEffect(() => {
+  //   if (open) {
+  //     setText(fullText);
+  //   } else {
+  //     setText(smallText);
+  //   }
+  // }, [open]);
 
   return (
     <>
@@ -50,12 +50,12 @@ const About = () => {
         </ul>
         <h2 className={styles.title}>About</h2>
         <p>
-          {`${text} `}
-          {open ? null : (
+          {fullText}
+          {/* {open ? null : (
             <span className={styles.moreLink} onClick={() => setOpen(true)}>
               More...
             </span>
-          )}
+          )} */}
         </p>
       </Container>
     </>
