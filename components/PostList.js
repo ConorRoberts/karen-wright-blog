@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import PostPreview from "./PostPreview.js";
 import styles from "../styles/PostList.module.scss";
-import axios from "axios";
 
 import { Select } from "@chakra-ui/react";
 
-const PostList = ({posts}) => {
+const PostList = ({ posts }) => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("None");
 
   useEffect(() => {
-    if (posts){
+    if (posts) {
       setCategories(
         posts
           // object => category
@@ -24,7 +23,16 @@ const PostList = ({posts}) => {
   const renderPosts = () => {
     if (selectedCategory === "None") {
       return posts.map(
-        ({ _id, title, author, category, date, imageURL, text }) => (
+        ({
+          _id,
+          title,
+          author,
+          category,
+          date,
+          imageURL,
+          text,
+          orientation,
+        }) => (
           <PostPreview
             key={_id}
             postID={_id}
@@ -34,24 +42,37 @@ const PostList = ({posts}) => {
             category={category}
             author={author}
             date={date}
+            orientation={orientation}
           />
         )
       );
     }
     return posts
       .filter(({ category }) => category === selectedCategory)
-      .map(({ _id, title, author, category, date, imageURL, text }) => (
-        <PostPreview
-          key={_id}
-          postID={_id}
-          title={title}
-          text={text}
-          imageURL={imageURL}
-          category={category}
-          author={author}
-          date={date}
-        />
-      ));
+      .map(
+        ({
+          _id,
+          title,
+          author,
+          category,
+          date,
+          imageURL,
+          text,
+          orientation,
+        }) => (
+          <PostPreview
+            key={_id}
+            postID={_id}
+            title={title}
+            text={text}
+            imageURL={imageURL}
+            category={category}
+            author={author}
+            date={date}
+            orientation={orientation}
+          />
+        )
+      );
   };
 
   return (

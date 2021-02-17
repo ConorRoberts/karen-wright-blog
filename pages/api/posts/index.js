@@ -12,7 +12,7 @@ export default async function (req, res) {
       res.status(200).send({ posts });
       return;
     case "POST":
-      const { title, author, text, category, imageURL } = req.body;
+      const { title, author, text, category, imageURL, orientation } = req.body;
 
       const newPost = new Post({
         title,
@@ -21,6 +21,7 @@ export default async function (req, res) {
         category,
         imageURL,
         date: new Date(),
+        orientation,
       });
 
       newPost.save();

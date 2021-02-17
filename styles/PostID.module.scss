@@ -6,4 +6,16 @@
   margin-top: 6vh;
   display: flex;
   justify-content: center;
+  flex-direction:column;
+  align-items:center;
+}
+
+.iconsContainer{
+  display:flex;
+  font-size:3rem;
+  padding:1.5rem;
+  & > *{
+    
+    margin:0 1.5rem;
+  }
 }

@@ -7,6 +7,7 @@ const postSchema = new Schema({
   category: String,
   date: Date,
   imageURL: String,
+  orientation: String,
 });
 
-export default mongoose.models.posts || mongoose.model("posts",postSchema);
+export default mongoose.models.posts || mongoose.model("posts", postSchema);

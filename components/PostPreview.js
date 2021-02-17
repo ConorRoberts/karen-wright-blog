@@ -10,6 +10,7 @@ const PostPreview = ({
   category,
   date,
   noLink,
+  orientation,
 }) => {
   const monthNames = [
     "January",
@@ -27,29 +28,44 @@ const PostPreview = ({
   ];
 
   return (
-    <div className={styles.container}>
-      {noLink ? (
-        <img src={imageURL} alt="Blog post image" />
-      ) : (
-        <Link href={`/post/${postID}`} className={styles.imageContainer}>
+    <div
+      className={
+        orientation
+          ? orientation === "portrait"
+            ? styles.container
+            : styles.containerLandscape
+          : styles.container
+      }
+    >
+      <div className={styles.imageContainer}>
+        {noLink ? (
           <img
-            style={{ cursor: "pointer" }}
-            className={styles.postImage}
             src={imageURL}
+            className={styles.postImage}
             alt="Blog post image"
           />
-        </Link>
-      )}
-
-      <p className={styles.category}>{category}</p>
-      <h4 className={styles.title}>{title}</h4>
-      <p className={styles.text}>{text}</p>
-      <p className={styles.date}>
-        {`${author} on ${monthNames[new Date(date).getMonth()]} ${new Date(
-          date
-        ).getDate()}, 
+        ) : (
+          <Link href={`/post/${postID}`}>
+            <img
+              style={{ cursor: "pointer" }}
+              className={styles.postImage}
+              src={imageURL}
+              alt="Blog post image"
+            />
+          </Link>
+        )}
+      </div>
+      <div className={styles.textContainer}>
+        <p className={styles.category}>{category}</p>
+        <h4 className={styles.title}>{title}</h4>
+        <p className={styles.text}>{text}</p>
+        <p className={styles.date}>
+          {`${author} on ${monthNames[new Date(date).getMonth()]} ${new Date(
+            date
+          ).getDate()}, 
         ${new Date(date).getFullYear()}`}
-      </p>
+        </p>
+      </div>
     </div>
   );
 };

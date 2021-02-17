@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import Header from "../../components/Header";
-import styles from "../../styles/Write.module.scss";
+import Header from "../../../components/Header";
+import styles from "../../../styles/Write.module.scss";
 import axios from "axios";
-import PostPreview from "../../components/PostPreview";
+import PostPreview from "../../../components/PostPreview";
 import { useRouter } from "next/router";
-import withSession from "../../lib/withSession";
+import withSession from "../../../lib/withSession";
 
 import { Button, Textarea, FormLabel, Input, Select } from "@chakra-ui/react";
 
-const Write = ({ user }) => {
+const Edit = ({ user }) => {
   const router = useRouter();
+  const { id } = router.query;
   const [formState, setFormState] = useState({
     title: "",
     text: "",
@@ -20,13 +21,20 @@ const Write = ({ user }) => {
     orientation: "portrait",
   });
 
+  useEffect(async () => {
+    const {
+      data: { data },
+    } = await axios.get(`/api/posts/id/${id}`);
+    setFormState(data);
+  }, []);
+
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.id]: e.target.value });
   };
-  
+
   const submitPost = async (e) => {
     e.preventDefault();
-    await axios.post("/api/posts", formState);
+    await axios.post(`/api/posts/id/${id}`, formState);
     router.push("/");
   };
 
@@ -139,4 +147,4 @@ export const getServerSideProps = withSession(async ({ req, res }) => {
   return { props: {} };
 });
 
-export default Write;
+export default Edit;
