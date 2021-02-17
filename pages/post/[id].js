@@ -25,8 +25,8 @@ const PostID = ({ id, post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [user, setUser] = useState(null);
   useEffect(async () => {
-    const user = await axios.get("/api/session");
-    setUser(user);
+    const {data:{username}} = await axios.get("/api/session");
+    setUser(username);
   }, []);
 
   const deletePost = async () => {
