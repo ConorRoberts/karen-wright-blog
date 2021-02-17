@@ -6,15 +6,13 @@ import dbConnect from "../../utils/dbConnect";
 import Post from "../../models/Post";
 import axios from "axios";
 import { BsPencilSquare, BsFillTrashFill } from "react-icons/bs";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import {
   Box,
   Modal,
   Button,
-  BoxModal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalFooter,
   ModalBody,
   ModalCloseButton,
@@ -40,31 +38,33 @@ const PostID = ({ id, post }) => {
     <div className="container">
       <Header user={user} />
       <main className={styles.mainContainer}>
-        <Box
-          borderWidth="1px"
-          borderRadius="lg"
-          className={styles.iconsContainer}
-        >
-          <Link href={`/admin/edit/${id}`}>
+        {user && (
+          <Box
+            borderWidth="1px"
+            borderRadius="lg"
+            className={styles.iconsContainer}
+          >
+            <Link href={`/admin/edit/${id}`}>
+              <Button
+                fontSize="1.5rem"
+                padding="1.5rem"
+                size="lg"
+                leftIcon={<BsPencilSquare />}
+              >
+                Edit Post
+              </Button>
+            </Link>
             <Button
               fontSize="1.5rem"
               padding="1.5rem"
               size="lg"
-              leftIcon={<BsPencilSquare />}
+              leftIcon={<BsFillTrashFill />}
+              onClick={onOpen}
             >
-              Edit Post
+              Delete Post
             </Button>
-          </Link>
-          <Button
-            fontSize="1.5rem"
-            padding="1.5rem"
-            size="lg"
-            leftIcon={<BsFillTrashFill />}
-            onClick={onOpen}
-          >
-            Delete Post
-          </Button>
-        </Box>
+          </Box>
+        )}
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent padding="0.5rem" size="lg" marginTop="8rem">
@@ -94,6 +94,7 @@ const PostID = ({ id, post }) => {
             </ModalFooter>
           </ModalContent>
         </Modal>
+
         <div className={styles.postContainer}>
           {post && (
             <PostPreview
